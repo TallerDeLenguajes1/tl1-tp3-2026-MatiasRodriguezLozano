@@ -7,11 +7,17 @@ struct {
     } typedef Persona;
 void mostrarPersonas(Persona * persona);
 
+void mostrarPersonas(Persona *persona);
+void BuscaNombrePorId(Persona *personas, int cantidad, int id);
+int BuscaNombrePorPalabra(Persona *personas, int cantidad, char *palabra);
+
+
 int main (){
     char buff[30];
     Persona * usuarios;
     char palabra[30];
     int cantidad = 5;
+    int id;
     usuarios = (Persona*)malloc(5 * sizeof(Persona));
 
     for (int i=0 ; i<5 ; i++) {
@@ -22,7 +28,10 @@ int main (){
     }
     
     mostrarPersonas(usuarios);
-    mostrarPersonas(usuarios, cantidad);
+ 
+    printf("\nIngrese ID a buscar: ");
+    scanf("%d", &id);
+    BuscaNombrePorId(usuarios, cantidad, id);
 
     printf("\nIngrese palabra clave: ");
     scanf("%s", palabra);
