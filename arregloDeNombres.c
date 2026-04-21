@@ -9,6 +9,8 @@ void mostrarPersonas(Persona * persona);
 int main (){
     char buff[30];
     Persona * usuarios;
+    char palabra[30];
+    int cantidad = 5;
     usuarios = (Persona*)malloc(5 * sizeof(Persona));
 
     for (int i=0 ; i<5 ; i++) {
@@ -19,7 +21,19 @@ int main (){
     }
     
     mostrarPersonas(usuarios);
-    
+    mostrarPersonas(usuarios, cantidad);
+
+    printf("\nIngrese palabra clave: ");
+    scanf("%s", palabra);
+
+    int resultado = BuscaNombrePorPalabra(usuarios, cantidad, palabra);
+
+    if (resultado != -1) {
+        printf("Nombre encontrado: %s\n", usuarios[resultado].nombre);
+    } else {
+        printf("No se encontró ninguna coincidencia\n");
+    }
+
     for (int i = 0; i < 5; i++) {
         free((usuarios + i)->nombre);
     }
@@ -33,6 +47,13 @@ void mostrarPersonas(Persona * persona){
      for (int i=0 ; i<5 ; i++) {
         printf("%s\n", (persona + i)->nombre);
     }
-    
+}
 
+int BuscaNombrePorPalabra(Persona *personas, int cantidad, char *palabra) {
+    for (int i = 0; i < cantidad; i++) {
+        if (strstr(personas[i].nombre, palabra) != NULL) {
+            return i;
+        }
+    }
+    return -1;
 }
