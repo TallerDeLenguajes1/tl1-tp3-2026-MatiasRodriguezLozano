@@ -6,6 +6,7 @@ struct {
     char * nombre;
     } typedef Persona;
 void mostrarPersonas(Persona * persona);
+
 int main (){
     char buff[30];
     Persona * usuarios;
@@ -33,6 +34,11 @@ void mostrarPersonas(Persona * persona){
      for (int i=0 ; i<5 ; i++) {
         printf("%s\n", (persona + i)->nombre);
     }
-    
-
+}
+void BuscaNombrePorId(Persona *personas, int cantidad, int id) {
+    if (id >= 0 && id < cantidad) {
+        printf("Nombre encontrado: %s\n", personas[id].nombre);
+    } else {
+        printf("no se encontró el valor buscado\n");
+    }
 }
